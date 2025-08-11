@@ -8,7 +8,7 @@
 
 ### 적용법
 
-[Releases](https://github.com/1cowoo/HealthMultiplier/releases) 페이지에서 최신 버전 플러그안을 받고서 서버의 plugins 폴더에 옮기고 서버를 재시작 합니다.
+[Releases](https://github.com/1cowoo/HealthMultiplier/releases) 페이지에서 최신 버전 플러그인을 받고서 서버의 plugins 폴더에 옮기고 서버를 재시작 합니다.
 
 명령어 : /health <숫자1> <숫자2>
 
@@ -17,6 +17,6 @@
 2. 코틀린 아니고 걍 자바언어임
 
 ### 주의점 
-1. 유튜브에서 사용할시 이 깃허브 링크 혹은 [유튜브 채널](https://youtube.com/@KOWOO코우)를 영상 설명창에 써주세요.
+1. 유튜브에서 사용할시 이 깃허브 링크 혹은 [유튜브 채널](https://youtube.com/@KOWOO코우)을 영상 설명창에 써주세요.
 2. 기존에 존재하던 엔티티는 적용이 되지 않습니다
 3. 서버를 껐다 킬시 적용 적용이 안될 수 있습니다. 다시 커맨드를 실행시켜주세요.
