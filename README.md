@@ -8,7 +8,7 @@
 
 ### 적용법
 
-
+Releases[https://github.com] 
 /health <숫자1> <숫자2>
 
 ### 수정하고 싶은 분들이 참고해야 할 점
