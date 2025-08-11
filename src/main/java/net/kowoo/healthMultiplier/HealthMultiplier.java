@@ -10,7 +10,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
-import javax.security.auth.callback.CallbackHandler;
 import java.util.concurrent.ThreadLocalRandom;
 
 public final class HealthMultiplier extends JavaPlugin implements Listener,CommandExecutor {
@@ -45,8 +44,10 @@ public final class HealthMultiplier extends JavaPlugin implements Listener,Comma
             return true;
         }
         if (inputVal1 == inputVal2) {
-            commandSender.sendMessage(ChatColor.RED + "두 값을 같게 할 수 없어요!");
+            commandSender.sendMessage(ChatColor.RED + "두 값이 같을 수 없어요!");
+            return true;
         }
+
         commandSender.sendMessage(ChatColor.GREEN + "체력 랜덤 배율을 " + inputVal1 + "과 " + inputVal2 + " 사이로 설정했습니다.");
         val1 = inputVal1;
         val2 = inputVal2;
