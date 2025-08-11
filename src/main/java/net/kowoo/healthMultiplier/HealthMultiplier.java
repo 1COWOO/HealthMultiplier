@@ -17,16 +17,16 @@ public final class HealthMultiplier extends JavaPlugin implements Listener,Comma
     private int val2 = 1; // 기본값
     @Override
     public void onEnable() {
-        // Plugin startup logic
-        getLogger().info("플러그인이 활성화됐습니다!");
-        getServer().getPluginManager().registerEvents(this, this);
-        getServer().getPluginCommand("health").setExecutor(this);
+        // 플러그인이 활성화됐을때
+        getLogger().info("플러그인이 활성화됐습니다!"); //활성화 메시지
+        getServer().getPluginManager().registerEvents(this, this); //이벹트 등록
+        getServer().getPluginCommand("health").setExecutor(this); //health 커맨드 등록
     }
 
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String @NotNull [] strings) {
         if (strings.length != 2) {
-            commandSender.sendMessage(ChatColor.RED + "사용법 : /health <수1> <수2>");
+            commandSender.sendMessage(ChatColor.RED + "사용법 : /health <수1> <수2>"); //수 2개가 완성 안됐을때 메시지
             return true;
         }
         String num1 = strings[0];
