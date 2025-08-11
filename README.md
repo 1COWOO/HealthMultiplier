@@ -8,7 +8,7 @@
 
 ### 적용법
 
-[Releases](https://github.com/1cowoo/HealthMultiplier/releases) 페이지에서 최신 버전 플러그안을 잗고 서버의 plugins 폴더에 옮기고 서버를 재시작 합니다.
+[Releases](https://github.com/1cowoo/HealthMultiplier/releases) 페이지에서 최신 버전 플러그안을 받고서 서버의 plugins 폴더에 옮기고 서버를 재시작 합니다.
 
 명령어 : /health <숫자1> <숫자2>
 
