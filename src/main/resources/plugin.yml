@@ -6,5 +6,5 @@ authors: [kowoo]
 description: 체력을 랜덤 배율로 세팅합니다.
 commands:
   health:
-    description: 수1 ~ 수2 사이의 랜덤 배율로 플레이어 제외 체력을 세팅합니다.
-    usage: /health <수1> <수2>
+    description: 수1 ~ 수2 사이의 랜덤 수로 엔티티 체력을 랜덤 배율로 세팅합니다
+    usage: /health <수1> <수2> or /health reset
