@@ -2,8 +2,7 @@ name: HealthMultiplier
 version: '1.1.1'
 main: net.kowoo.healthMultiplier.HealthMultiplier
 api-version: '1.21'
-authors: [kowoo]
-description: 체력을 랜덤 배율로 세팅합니다.
+authors: [kowoo]description: 체력을 랜덤 배율로 세팅합니다.
 commands:
   health:
     description: 수1 ~ 수2 사이의 랜덤 배율로 플레이어 제외 체력을 세팅합니다.
