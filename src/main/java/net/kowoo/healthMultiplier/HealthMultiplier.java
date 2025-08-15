@@ -21,9 +21,9 @@ public final class HealthMultiplier extends JavaPlugin implements Listener,Comma
     @Override
     public void onEnable() {
         // 플러그인이 활성화됐을때
-        getLogger().info("플러그인이 활성화됐습니다!"); //활성화 메시지
-        getServer().getPluginManager().registerEvents(this, this); //이벹트 등록
-        getServer().getPluginCommand("health").setExecutor(this); //health 커맨드 등록
+        getLogger().info("플러그인이 활성화됐습니다!"); // 플러그인 활성화 메시지
+        getServer().getPluginManager().registerEvents(this, this); // 이벤트 등록
+        getServer().getPluginCommand("health").setExecutor(this); // /health 커맨드 등록
     }
 
     @Override
@@ -53,7 +53,7 @@ public final class HealthMultiplier extends JavaPlugin implements Listener,Comma
         String num1 = args[0];
         String num2 = args[1];
 
-        // 숫자 검증
+        // 숫자 체크
         if (!num1.matches("^[1-9]\\d*$") || !num2.matches("^[1-9]\\d*$")) {
             sender.sendMessage(ChatColor.RED + "두 값은 모두 0보다 큰 숫자여야 해요!");
             return true;
@@ -84,9 +84,8 @@ public final class HealthMultiplier extends JavaPlugin implements Listener,Comma
         return List.of();
     }
     @Override
-    public void onDisable() {
-        // Plugin shutdown logic
-        getLogger().info("플러그인이 비활성화됐습니다!");
+    public void onDisable() { 
+        getLogger().info("플러그인이 비활성화됐습니다!"); // 플러그인 비활성화 메시지
     }
 
     @EventHandler
