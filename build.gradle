@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'net.kowoo'
-version = '1.0'
+version = '1.1.0'
 
 repositories {
     mavenCentral()
@@ -52,8 +52,4 @@ processResources {
     filesMatching('plugin.yml') {
         expand props
     }
-}
-tasks.jar{
-    archiveFileName = 'HealthMultiplier.jar'
-    destinationDirectory = file('C:\\Users\\kowoo\\Onedrive\\Documents\\ServerEngine\\servers\\server_818280382\\plugins')
 }
