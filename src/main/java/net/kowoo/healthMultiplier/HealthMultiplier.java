@@ -1,18 +1,22 @@
 package net.kowoo.healthMultiplier;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.command.*;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
-import java.util.concurrent.ThreadLocalRandom;
 
-public final class HealthMultiplier extends JavaPlugin implements Listener,CommandExecutor {
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+import org.bukkit.command.TabExecutor;
+import org.bukkit.command.TabCompleter;
+import org.jetbrains.annotations.Nullable;
+
+public final class HealthMultiplier extends JavaPlugin implements Listener,CommandExecutor, TabExecutor {
+
     private int val1 = 1;  // 기본값
     private int val2 = 1; // 기본값
     @Override
@@ -24,34 +28,72 @@ public final class HealthMultiplier extends JavaPlugin implements Listener,Comma
     }
 
     @Override
-    public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String @NotNull [] strings) {
-        if (strings.length != 2) {
-            commandSender.sendMessage(ChatColor.RED + "사용법 : /health <수1> <수2>"); //수 2개가 완성 안됐을때 메시지
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+
+        // 인자가 없는 경우
+        if (args.length == 0) {
+            sender.sendMessage(ChatColor.RED + "사용법: /health <수1> <수2> 또는 /health reset");
             return true;
         }
-        String num1 = strings[0];
-        String num2 = strings[1];
+
+        // reset 명령어
+        if (args.length == 1 && args[0].equalsIgnoreCase("reset")) {
+            val1 = 1;
+            val2 = 1;
+            sender.sendMessage(ChatColor.GREEN + "체력 배율이 기본값으로 초기화됐어요!");
+
+            getServer().getWorlds().forEach(world -> {
+                world.getEntities().forEach(entity -> {
+                    if (entity instanceof LivingEntity living) {
+                        // 기본 체력 값 가져와서 적용
+                        double defaultHealth = living.getAttribute(Attribute.MAX_HEALTH).getDefaultValue();
+                        living.getAttribute(Attribute.MAX_HEALTH).setBaseValue(defaultHealth);
+                        living.setHealth(defaultHealth);
+                    }
+                });
+            });
+
+            return true;
+        }
+
+        // 숫자 2개가 아닌 경우
+        if (args.length != 2) {
+            sender.sendMessage(ChatColor.RED + "값 2개를 입력하거나 /health reset을 사용하세요!");
+            return true;
+        }
+
+        String num1 = args[0];
+        String num2 = args[1];
+
+        // 숫자 검증
+        if (!num1.matches("^[1-9]\\d*$") || !num2.matches("^[1-9]\\d*$")) {
+            sender.sendMessage(ChatColor.RED + "두 값은 모두 0보다 큰 숫자여야 해요!");
+            return true;
+        }
+
         int inputVal1 = Integer.parseInt(num1);
         int inputVal2 = Integer.parseInt(num2);
 
-        if (!num1.matches("^[1-9]\\d*$")
-                || !num2.matches("^[1-9]\\d*$")) {
-            commandSender.sendMessage(ChatColor.RED + "두 값은 모두 0보다 큰 숫자여야 해요!");
-            return true;
-        }
         if (inputVal1 > inputVal2) {
-            commandSender.sendMessage(ChatColor.RED + "첫번째 값이 두번째 값보다 클 수 없어요!");
+            sender.sendMessage(ChatColor.RED + "첫번째 값이 두번째 값보다 클 수 없어요!");
             return true;
         }
         if (inputVal1 == inputVal2) {
-            commandSender.sendMessage(ChatColor.RED + "두 값이 같을 수 없어요!");
+            sender.sendMessage(ChatColor.RED + "두 값이 같을 수 없어요!");
             return true;
         }
 
-        commandSender.sendMessage(ChatColor.GREEN + "체력 랜덤 배율을 " + inputVal1 + "과 " + inputVal2 + " 사이로 설정했습니다.");
         val1 = inputVal1;
         val2 = inputVal2;
+        sender.sendMessage(ChatColor.GREEN + "체력 랜덤 배율을 " + val1 + "과 " + val2 + " 사이로 설정했습니다.");
         return true;
+    }
+    @Override
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+        if (args.length == 1) {
+            return List.of("reset");
+        }
+        return List.of();
     }
     @Override
     public void onDisable() {
