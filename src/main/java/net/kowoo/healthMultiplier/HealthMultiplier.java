@@ -12,7 +12,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import org.bukkit.command.TabExecutor;
-import org.bukkit.command.TabCompleter;
 import org.jetbrains.annotations.Nullable;
 
 public final class HealthMultiplier extends JavaPlugin implements Listener,CommandExecutor, TabExecutor {
@@ -41,17 +40,6 @@ public final class HealthMultiplier extends JavaPlugin implements Listener,Comma
             val1 = 1;
             val2 = 1;
             sender.sendMessage(ChatColor.GREEN + "체력 배율이 기본값으로 초기화됐어요!");
-
-            getServer().getWorlds().forEach(world -> {
-                world.getEntities().forEach(entity -> {
-                    if (entity instanceof LivingEntity living) {
-                        // 기본 체력 값 가져와서 적용
-                        double defaultHealth = living.getAttribute(Attribute.MAX_HEALTH).getDefaultValue();
-                        living.getAttribute(Attribute.MAX_HEALTH).setBaseValue(defaultHealth);
-                        living.setHealth(defaultHealth);
-                    }
-                });
-            });
 
             return true;
         }
@@ -109,4 +97,4 @@ public final class HealthMultiplier extends JavaPlugin implements Listener,Comma
             livingEntity.setHealth(livingEntity.getAttribute(Attribute.MAX_HEALTH).getBaseValue());
         }
     }
-}
+    }
