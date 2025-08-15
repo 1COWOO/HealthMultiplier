@@ -19,7 +19,10 @@
 
 ### 빌드 방법
 ```html
-하이
+git clone https://github.com/1COWOO/HealthMultiplier
+cd HealthMultiplier
+./gradlew build
+cd build/target
 ```
 ### 주의점 
 1. 유튜브에서 사용할시 이 깃허브 링크 혹은 [유튜브 채널](https://youtube.com/@KOWOO코우)을 영상 설명창에 써주세요.
