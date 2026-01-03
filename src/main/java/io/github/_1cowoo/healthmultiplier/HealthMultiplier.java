@@ -1,4 +1,4 @@
-package net.kowoo.healthMultiplier;
+package io.github._1cowoo.healthmultiplier;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.command.*;
 import org.bukkit.entity.LivingEntity;
